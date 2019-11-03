@@ -9,6 +9,15 @@
     "name": "penrique",
     "url": "https://github.com/penrique/ngx-value.git"
   },
+  "keywords": [
+    "angular",
+    "ngx-value",
+    "value",
+    "properties",
+    "ngx",
+    "ng",
+    "decorator"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/penrique/ngx-value.git"
