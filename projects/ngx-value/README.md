@@ -19,7 +19,7 @@ You can now access properties from external files using the @Value decorator.
 
 ### Methods
 ```ts
-Values(...configFiles: string[]): () => () => Promise<any>
+Values(...files: string[]): () => () => Promise<any>
 ```
 
 ```ts

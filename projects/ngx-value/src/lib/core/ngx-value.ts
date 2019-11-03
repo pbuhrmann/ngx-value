@@ -23,13 +23,13 @@ export function Value(property: string, file?: string) {
     };
 }
 
-export function Values(...configFiles: string[]) {
+export function Values(...files: string[]) {
     return () => {
         return () => {
             return new Promise((resolve, reject) => {
                 let promises = [];
-                configFiles.forEach(configFile => {
-                    promises.push(JSONLoader.getInstance().loadJSON(configFile));
+                files.forEach(file => {
+                    promises.push(JSONLoader.getInstance().loadJSON(file));
                 });
                 Promise.all(promises).then(x => {
                     resolve(x);
