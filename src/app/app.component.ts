@@ -9,24 +9,24 @@ import { Value, Get } from 'projects/ngx-value/src';
 export class AppComponent implements OnInit {
 
   @Value('title') // default location is "assets/properties.json"
-  title: string = '- Not Found -';
+  public title: string = '- Not Found -';
 
   @Value('subtitle')
-  subtitle: string = '- Not Found -';
+  public subtitle: string = '- Not Found -';
 
   @Value('google', 'assets/websites.json')
-  google: string = '- Not Found -';
+  public google: string = '- Not Found -';
 
   @Value('stackoverflow', 'assets/websites.json')
-  stackoverflow: string = '- Not Found -';
+  public stackoverflow: string = '- Not Found -';
 
   @Value('angular', 'assets/websites.json')
-  angular: string = '- Not Found -';
+  public angular: string = '- Not Found -';
 
   @Value(null, 'assets/authors.json') // null means it's an array
-  authors: any = [];
+  public authors: any = [];
 
-  random: string = '- Not Found -';
+  public random: string = '- Not Found -';
 
   ngOnInit(): void {
     console.log(this.title);
