@@ -1,5 +1,14 @@
 # ngx-value
 
+## Installation
+
+To use ngx-value in your project just run:
+
+```
+npm install ngx-value
+```
+
+
 You can now access properties from external files using the @Value decorator.
 
 ## API:
