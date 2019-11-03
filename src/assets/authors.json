@@ -1,0 +1,54 @@
+[
+    {
+        "author": "J. K. Rowling",
+        "year": 1965,
+        "books": [
+            {
+                "name": "Harry Potter and the Philosopher's Stone",
+                "year": 1997
+            },
+            {
+                "name": "Harry Potter and the Chamber of Secrets",
+                "year": 1998
+            },
+            {
+                "name": "Harry Potter and the Prisoner of Azkaban",
+                "year": 1999
+            },
+            {
+                "name": "Harry Potter and the Goblet of Fire",
+                "year": 2000
+            },
+            {
+                "name": "Harry Potter and the Order of the Phoenix",
+                "year": 2003
+            },
+            {
+                "name": "Harry Potter and the Half-Blood Prince",
+                "year": 2005
+            },
+            {
+                "name": "Harry Potter and the Deathly Hallows",
+                "year": 2007
+            }
+        ]
+    },
+    {
+        "author": "Patrick Rothfuss",
+        "year": 1973,
+        "books": [
+            {
+                "name": "The Name of the Wind",
+                "year": 2007
+            },
+            {
+                "name": "The Wise Man's Fear",
+                "year": 2011
+            },
+            {
+                "name": "The Slow Regard of Silent Things",
+                "year": 2014
+            }
+        ]
+    }
+]

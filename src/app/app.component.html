@@ -1,0 +1,15 @@
+<div><b>Title:</b> {{title}}</div>
+<div><b>Subtitle:</b> {{subtitle}}</div>
+<br>
+<div><b>Google:</b> {{google}}</div>
+<div><b>Stackoverflow:</b> {{stackoverflow}}</div>
+<div><b>Angular:</b> {{angular}}</div>
+<br>
+<div *ngFor="let item of authors">
+    <div><b>Author:</b> {{item.author}}</div>
+    <div *ngFor="let book of item.books">
+        <div><b>Book:</b> {{book.name}} ({{book.year}})</div>
+    </div>
+    <br>
+</div>
+<div><b>Random Text:</b> {{random}}</div>
