@@ -1,5 +1,8 @@
 # ngx-value
 
+[![npm version](https://badge.fury.io/js/ngx-value.svg)](https://badge.fury.io/js/ngx-value)
+![npm](https://img.shields.io/npm/dt/ngx-value)
+
 ## Installation
 
 To use ngx-value in your project just run:
