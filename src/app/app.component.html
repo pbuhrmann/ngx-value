@@ -1,15 +1,15 @@
-<div><b>Title:</b> {{title}}</div>
-<div><b>Subtitle:</b> {{subtitle}}</div>
+<div class="title"><b>Title:</b> {{title}}</div>
+<div class="subtitle"><b>Subtitle:</b> {{subtitle}}</div>
 <br>
-<div><b>Google:</b> {{google}}</div>
-<div><b>Stackoverflow:</b> {{stackoverflow}}</div>
-<div><b>Angular:</b> {{angular}}</div>
+<div class="angular"><b>Angular:</b> {{angular}}</div>
+<div class="notFound"><b>Not found:</b> {{notFound}}</div>
+<div class="empty"><b>Empty:</b> {{empty}}</div>
 <br>
 <div *ngFor="let item of authors">
-    <div><b>Author:</b> {{item.author}}</div>
+    <div class="author"><b>Author:</b> {{item.author}}</div>
     <div *ngFor="let book of item.books">
-        <div><b>Book:</b> {{book.name}} ({{book.year}})</div>
+        <div class="book"><b>Book:</b> {{book.name}} ({{book.year}})</div>
     </div>
     <br>
 </div>
-<div><b>Random Text:</b> {{random}}</div>
+<div class="random"><b>Random Text:</b> {{random}}</div>
