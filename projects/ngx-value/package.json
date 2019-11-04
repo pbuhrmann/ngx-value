@@ -1,6 +1,6 @@
 {
   "name": "ngx-value",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "peerDependencies": {
     "@angular/common": "<9.0.0",
     "@angular/core": "<9.0.0",
@@ -13,12 +13,14 @@
   },
   "keywords": [
     "angular",
+    "angular7",
+    "angular8",
     "ngx-value",
     "value",
     "properties",
     "ngx",
     "ng",
-    "decorator"
+    "decorator"    
   ],
   "repository": {
     "type": "git",
