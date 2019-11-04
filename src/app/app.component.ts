@@ -14,22 +14,21 @@ export class AppComponent implements OnInit {
   @Value('subtitle')
   public subtitle: string = '- Not Found -';
 
-  @Value('google', 'assets/websites.json')
-  public google: string = '- Not Found -';
-
-  @Value('stackoverflow', 'assets/websites.json')
-  public stackoverflow: string = '- Not Found -';
-
   @Value('angular', 'assets/websites.json')
   public angular: string = '- Not Found -';
 
   @Value(null, 'assets/authors.json') // null means it's an array
   public authors: any = [];
 
+  @Value('notFound')
+  public notFound: string = '- Not Found -';
+  
+  @Value('empty')
+  public empty: string;
+  
   public random: string = '- Not Found -';
 
   ngOnInit(): void {
-    console.log(this.title);
     this.random = Get('random');
   }
 
