@@ -3,6 +3,8 @@
 [![npm version](https://badge.fury.io/js/ngx-value.svg)](https://badge.fury.io/js/ngx-value)
 ![npm](https://img.shields.io/npm/dt/ngx-value)
 
+`ngx-value` is an Angular library that provides a way to load JSON data from several external sources and read their properties just by using the @Value decorator.
+
 ## Installation
 
 To use ngx-value in your project just run:
@@ -10,8 +12,6 @@ To use ngx-value in your project just run:
 ```
 npm install ngx-value
 ```
-
-You can now access properties from external data using the @Value decorator.
 
 ## API:
 
@@ -31,7 +31,7 @@ Get(property: string, data?: string): any
 
 ## Usage
 
-It is necessary to load any external data before our angular application starts and as such we need to include some initialization logic into our app. As seen below, we make use of the APP_INITIALIZER provided by Angular which will allow us to run some code before the app actually starts running.
+First off, it is necessary to load any external data before our angular application starts and as such we need to include some initialization logic into our app. As seen below, we make use of the APP_INITIALIZER provided by Angular which will allow us to run some code before the app actually starts running.
 
 Afterwards just use @Value("...") or Get("...") to retrieve any property.
 
