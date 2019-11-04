@@ -11,27 +11,27 @@ To use ngx-value in your project just run:
 npm install ngx-value
 ```
 
-You can now access properties from external files using the @Value decorator.
+You can now access properties from external data using the @Value decorator.
 
 ## API:
 
 ### Decorators
 ```ts
-@Value(name: string, file?: string): any
+@Value(name: string, data?: string): any
 ```
 
 ### Methods
 ```ts
-Values(...files: string[]): () => () => Promise<any>
+Values(...data: string[]): () => () => Promise<any>
 ```
 
 ```ts
-Get(property: string, file?: string): any
+Get(property: string, data?: string): any
 ```
 
 ## Usage
 
-It is necessary to load any external files before our angular application starts and as such we need to include some initialization logic into our app. As seen below, we make use of the APP_INITIALIZER provided by Angular which will allow us to run some code before the app actually starts running.
+It is necessary to load any external data before our angular application starts and as such we need to include some initialization logic into our app. As seen below, we make use of the APP_INITIALIZER provided by Angular which will allow us to run some code before the app actually starts running.
 
 Afterwards just use @Value("...") or Get("...") to retrieve any property.
 
