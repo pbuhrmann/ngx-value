@@ -1,48 +1,63 @@
-export function Value(property: string, file?: string) {
-    return function (target: any, key: string | symbol) {
+class NgxValue {
 
-        let val = undefined;
+    static Value(property: string, file?: string) {
+        return (target: any, key: string | symbol) => {
 
-        const getter = () => {
-            if (val === undefined)
-                val = JSONLoader.getInstance().get(property, file) !== undefined ? JSONLoader.getInstance().get(property, file) : null;
-            return val;
-        };
+            let val = undefined;
 
-        const setter = (next) => {
-            let value = JSONLoader.getInstance().get(property, file) !== undefined ? JSONLoader.getInstance().get(property, file) : next;
-            val = value;
-        };
+            const getter = () => {
+                if (val === undefined)
+                    val = JSONLoader.getInstance().get(property, file) !== undefined ? JSONLoader.getInstance().get(property, file) : null;
+                return val;
+            };
 
-        Object.defineProperty(target, key, {
-            get: getter,
-            set: setter,
-            enumerable: true,
-            configurable: true
-        });
-    };
-}
+            const setter = (next) => {
+                let value = JSONLoader.getInstance().get(property, file) !== undefined ? JSONLoader.getInstance().get(property, file) : next;
+                val = value;
+            };
 
-export function Values(...files: string[]) {
-    return () => {
-        return () => {
-            return new Promise((resolve, reject) => {
-                let promises = [];
-                files.forEach(file => {
-                    promises.push(JSONLoader.getInstance().loadJSON(file));
-                });
-                Promise.all(promises).then(x => {
-                    resolve(x);
-                }).catch(x => {
-                    reject(x);
-                });
+            Object.defineProperty(target, key, {
+                get: getter,
+                set: setter,
+                enumerable: true,
+                configurable: true
             });
+        };
+    }
+
+    static Values(...files: string[]) {
+        return () => {
+            return () => {
+                return new Promise((resolve, reject) => {
+                    let promises = [];
+                    files.forEach(file => {
+                        promises.push(JSONLoader.getInstance().loadJSON(file));
+                    });
+                    Promise.all(promises).then(x => {
+                        resolve(x);
+                    }).catch(x => {
+                        reject(x);
+                    });
+                });
+            }
         }
+    }
+
+    static Get(property: string, file?: string) {
+        return JSONLoader.getInstance().get(property, file) !== undefined ? JSONLoader.getInstance().get(property, file) : null;
     }
 }
 
+export function Value(property: string, file?: string) {
+    return NgxValue.Value(property, file);
+}
+
+export function Values(...files: string[]) {
+    return NgxValue.Values(...files);
+}
+
 export function Get(property: string, file?: string) {
-    return JSONLoader.getInstance().get(property, file) !== undefined ? JSONLoader.getInstance().get(property, file) : null;
+    return NgxValue.Get(property, file);
 }
 
 class JSONLoader {
