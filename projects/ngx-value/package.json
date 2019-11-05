@@ -1,15 +1,17 @@
 {
   "name": "ngx-value",
   "version": "1.0.2",
+  "description": "💫 Load and access JSON data with this easy-to-use @Value decorator for Angular 💫",
+  "homepage": "https://github.com/penrique/ngx-value#readme",
   "peerDependencies": {
     "@angular/common": "<9.0.0",
     "@angular/core": "<9.0.0",
     "@angular/platform-browser": "<9.0.0",
-    "rxjs": "^6.4.0"
+    "rxjs": "^6.0.0"
   },
   "author": {
     "name": "penrique",
-    "url": "https://github.com/penrique/ngx-value.git"
+    "url": "https://github.com/penrique"
   },
   "keywords": [
     "angular",
@@ -20,7 +22,7 @@
     "properties",
     "ngx",
     "ng",
-    "decorator"    
+    "decorator"
   ],
   "repository": {
     "type": "git",
@@ -29,6 +31,5 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/penrique/ngx-value/issues"
-  },
-  "homepage": "https://github.com/penrique/ngx-value#readme"
+  }
 }
