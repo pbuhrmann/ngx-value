@@ -9,12 +9,12 @@ import { Value, Get } from 'projects/ngx-value/src';
 export class AppComponent implements OnInit {
 
   @Value('title') // default location is "assets/properties.json"
-  public title: string = '- Not Found -';
+  public title: string = '- Not Found -'; // Default value is "- Not Found -"
 
   @Value('subtitle')
   public subtitle: string = '- Not Found -';
 
-  @Value('angular', 'assets/websites.json')
+  @Value('angular', 'assets/websites.json') // load from "assets/websites.json"
   public angular: string = '- Not Found -';
 
   @Value(null, 'assets/authors.json') // null means it's an array
