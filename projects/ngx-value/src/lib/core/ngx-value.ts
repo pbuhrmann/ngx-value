@@ -26,21 +26,17 @@ class NgxValue {
     }
 
     static Values(...data: string[]) {
-        return () => {
-            return () => {
-                return new Promise((resolve, reject) => {
-                    let promises = [];
-                    data.forEach(result => {
-                        promises.push(JSONLoader.getInstance().loadJSON(result));
-                    });
-                    Promise.all(promises).then(x => {
-                        resolve(x);
-                    }).catch(x => {
-                        reject(x);
-                    });
-                });
-            }
-        }
+        return new Promise((resolve, reject) => {
+            let promises = [];
+            data.forEach(result => {
+                promises.push(JSONLoader.getInstance().loadJSON(result));
+            });
+            Promise.all(promises).then(x => {
+                resolve(x);
+            }).catch(x => {
+                reject(x);
+            });
+        });
     }
 
     static Get(property: string, data?: string) {
