@@ -1,5 +1,7 @@
 class NgxValue {
 
+    public static defaultPath: string;
+
     static Value(property: string, data?: string) {
         return (target: any, key: string | symbol) => {
 
@@ -28,9 +30,14 @@ class NgxValue {
     static Values(...data: string[]) {
         return new Promise((resolve, reject) => {
             let promises = [];
-            data.forEach(result => {
-                promises.push(JSONLoader.getInstance().loadJSON(result));
-            });
+            if (data != null && data.length > 0) {
+                NgxValue.defaultPath = NgxValue.defaultPath != null ? NgxValue.defaultPath : data[0];
+
+                data.forEach(result => {
+                    promises.push(JSONLoader.getInstance().loadJSON(result));
+                });
+            }
+
             Promise.all(promises).then(x => {
                 resolve(x);
             }).catch(x => {
@@ -65,7 +72,7 @@ class JSONLoader {
     private constructor() { }
 
     public get(key: string, data?: string) {
-        data = data != null ? data : 'assets/properties.json';
+        data = data || NgxValue.defaultPath || 'assets/properties.json';
 
         if (JSONLoader.getInstance().json[data] == null) {
             console.error(`No data was found for @Value("${key}", "${data}").`);
@@ -85,7 +92,7 @@ class JSONLoader {
 
     public loadJSON(data: string) {
         return new Promise((resolve, reject) => {
-            data = data != null ? data : 'assets/properties.json';
+            data = data || NgxValue.defaultPath || 'assets/properties.json';
 
             if (JSONLoader.getInstance().promises[data] != undefined) {
                 return JSONLoader.getInstance().promises[data].then((value) => {
