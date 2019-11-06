@@ -41,7 +41,7 @@ First off, it is necessary to load any data before our angular application start
 
 Afterwards just use `@Value` or `Get()` to retrieve any property.
 
-Also keep in mind that you are allowed to call `Values(...)` at any time to continue loading JSON data into memory, wait for it to finish loading though (it's a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)).
+Also keep in mind that you are allowed to call `Values(...)` at any time to continue loading JSON data into memory, wait for it to finish loading before attempting to use new properties though (it's a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)).
 
 ```ts
 /**
@@ -100,6 +100,7 @@ export class AppComponent implements OnInit {
   }
 }
 ```
+
 ## Development server
 
 Run `npm run start` to serve the demo at http://localhost:4200/. The app will automatically reload if you change any of the source files.
