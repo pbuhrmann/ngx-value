@@ -101,16 +101,3 @@ export class AppComponent implements OnInit {
   }
 }
 ```
-## Development server
-
-Run `npm run start` to serve the demo at http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Build
-
-Run `npm run build` to build the demo project. The build artifacts will be stored in the /dist directory. Use the --prod flag for a production build.
-
-Run `npm run build:lib` to build the library. The build artifacts will be stored in the /dist/ngx-value directory.
-
-## Running tests
-
-Run `npm run test` to execute unit tests.
