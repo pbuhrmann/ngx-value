@@ -9,7 +9,7 @@ describe('AppComponent', () => {
         AppComponent
       ]
     }).compileComponents().then(() => {
-      Values('assets/properties.json', 'assets/websites.json', 'assets/authors.json')()().then(x => {
+      Values('assets/properties.json', 'assets/websites.json', 'assets/authors.json').then(x => {
         done();
       });
     });

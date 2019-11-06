@@ -61,7 +61,7 @@ import { Values } from 'ngx-value';
   providers: [
     {
       provide: APP_INITIALIZER,
-      useFactory: Values('assets/properties.json', 'assets/websites.json', 'assets/authors.json'),
+      useFactory: () => () => Values('assets/properties.json', 'assets/websites.json', 'assets/authors.json'),
       multi: true
     }
   ],
