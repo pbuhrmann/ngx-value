@@ -109,7 +109,7 @@ Run `npm run start` to serve the demo at http://localhost:4200/. The app will au
 
 Run `npm run build` to build the demo project. The build artifacts will be stored in the /dist directory. Use the --prod flag for a production build.
 
-Run `npm run build:lib` to build the library. The build artifacts will be stored in the /dist/ngx-value directory.
+Run `npm run lib` to build the library. The build artifacts will be stored in the /dist/ngx-value directory.
 
 ## Running tests
 
