@@ -2,7 +2,6 @@
 
 [![npm version](https://badge.fury.io/js/ngx-value.svg)](https://badge.fury.io/js/ngx-value)
 ![npm](https://img.shields.io/npm/dt/ngx-value?color=39F)
-![npm](https://img.shields.io/npm/v/ngx-value?color=39F)
 
 `ngx-value` is an Angular library that provides an easy way to load JSON data from various HTTP sources and read their properties during runtime.
 
