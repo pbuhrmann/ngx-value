@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Value, Get } from 'projects/ngx-value/src';
+import { Value, Get, Path } from 'projects/ngx-value/src';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+@Path('assets/properties.json') // Default path for this class
 export class AppComponent implements OnInit {
 
   @Value('title') // default location is "assets/properties.json"
@@ -22,10 +23,10 @@ export class AppComponent implements OnInit {
 
   @Value('notFound')
   public notFound: string = '- Not Found -';
-  
+
   @Value('empty')
   public empty: string;
-  
+
   public random: string = '- Not Found -';
 
   ngOnInit(): void {
