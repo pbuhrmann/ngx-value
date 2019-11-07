@@ -1,20 +1,22 @@
 class NgxValue {
 
     public static defaultPath: string;
+    public static paths: { [name: string]: string } = {};
 
-    static Value(property: string, data?: string) {
+    static Value(property: string, path?: string) { // Decorator factory
         return (target: any, key: string | symbol) => {
 
+            let className = target.constructor.name;
             let val = undefined;
 
             const getter = () => {
                 if (val === undefined)
-                    val = JSONLoader.getInstance().get(property, data) !== undefined ? JSONLoader.getInstance().get(property, data) : null;
+                    val = JSONLoader.getInstance().get(property, path, className) !== undefined ? JSONLoader.getInstance().get(property, path, className) : null;
                 return val;
             };
 
             const setter = (next) => {
-                let value = JSONLoader.getInstance().get(property, data) !== undefined ? JSONLoader.getInstance().get(property, data) : next;
+                let value = JSONLoader.getInstance().get(property, path, className) !== undefined ? JSONLoader.getInstance().get(property, path, className) : next;
                 val = value;
             };
 
@@ -27,13 +29,13 @@ class NgxValue {
         };
     }
 
-    static Values(...data: string[]) {
+    static Values(...path: string[]) {
         return new Promise((resolve, reject) => {
             let promises = [];
-            if (data != null && data.length > 0) {
-                NgxValue.defaultPath = NgxValue.defaultPath != null ? NgxValue.defaultPath : data[0];
+            if (path != null && path.length > 0) {
+                NgxValue.defaultPath = NgxValue.defaultPath != null ? NgxValue.defaultPath : path[0];
 
-                data.forEach(result => {
+                path.forEach(result => {
                     promises.push(JSONLoader.getInstance().loadJSON(result));
                 });
             }
@@ -46,56 +48,69 @@ class NgxValue {
         });
     }
 
-    static Get(property: string, data?: string) {
-        return JSONLoader.getInstance().get(property, data) !== undefined ? JSONLoader.getInstance().get(property, data) : null;
+    static Get(property: string, path?: string) {
+        return JSONLoader.getInstance().get(property, path) !== undefined ? JSONLoader.getInstance().get(property, path) : null;
+    }
+
+    static Path(path: string) {
+        return (constructor: Function) => {
+            let obj = Object.create(constructor);
+            console.log(obj.name);
+            console.log(path);
+            NgxValue.paths[obj.name] = path;
+        }
     }
 }
 
-export function Value(property: string, data?: string) {
-    return NgxValue.Value(property, data);
+export function Value(property: string, path?: string) {
+    return NgxValue.Value(property, path);
 }
 
-export function Values(...data: string[]) {
-    return NgxValue.Values(...data);
+export function Values(...path: string[]) {
+    return NgxValue.Values(...path);
 }
 
-export function Get(property: string, data?: string) {
-    return NgxValue.Get(property, data);
+export function Get(property: string, path?: string) {
+    return NgxValue.Get(property, path);
+}
+
+export function Path(path: string) {
+    return NgxValue.Path(path);
 }
 
 class JSONLoader {
 
     private static instance: JSONLoader;
-    public promises: { [data: string]: Promise<any>; } = {};
-    public json: { [data: string]: string } = {};
+    private promises: { [path: string]: Promise<any>; } = {};
+    private json: { [path: string]: string } = {};
 
     private constructor() { }
 
-    public get(key: string, data?: string) {
-        data = data || NgxValue.defaultPath || 'assets/properties.json';
+    public get(key: string, path?: string, className?: string) {
+        path = path || NgxValue.paths[className] || NgxValue.defaultPath || 'assets/properties.json';
 
-        if (JSONLoader.getInstance().json[data] == null) {
-            console.error(`No data was found for @Value("${key}", "${data}").`);
+        if (JSONLoader.getInstance().json[path] == null) {
+            console.error(`No path was found for @Value("${key}", "${path}").`);
             return;
         }
 
-        if (key === null && JSONLoader.getInstance().json[data] != null && Array.isArray(JSONLoader.getInstance().json[data])) {
-            return JSONLoader.getInstance().json[data];
+        if (key === null && JSONLoader.getInstance().json[path] != null && Array.isArray(JSONLoader.getInstance().json[path])) {
+            return JSONLoader.getInstance().json[path];
         } else if (key === null) {
-            console.error(`No array was found on "${data}".`);
-        } else if (JSONLoader.getInstance().json[data] != null && JSONLoader.getInstance().json[data][key] !== undefined) {
-            return JSONLoader.getInstance().json[data][key];
+            console.error(`No array was found on "${path}".`);
+        } else if (JSONLoader.getInstance().json[path] != null && JSONLoader.getInstance().json[path][key] !== undefined) {
+            return JSONLoader.getInstance().json[path][key];
         } else {
-            console.error(`Property "${key}" not found on "${data}".`);
+            console.error(`Property "${key}" not found on "${path}".`);
         }
     }
 
-    public loadJSON(data: string) {
+    public loadJSON(path: string) {
         return new Promise((resolve, reject) => {
-            data = data || NgxValue.defaultPath || 'assets/properties.json';
+            path = path || NgxValue.defaultPath || 'assets/properties.json';
 
-            if (JSONLoader.getInstance().promises[data] != undefined) {
-                return JSONLoader.getInstance().promises[data].then((value) => {
+            if (JSONLoader.getInstance().promises[path] != undefined) {
+                return JSONLoader.getInstance().promises[path].then((value) => {
                     resolve(value);
                 }).catch((reason) => {
                     reject(reason);
@@ -104,24 +119,24 @@ class JSONLoader {
             else {
                 let xhr = new XMLHttpRequest();
                 xhr.overrideMimeType("application/json");
-                xhr.open('GET', data, true);
+                xhr.open('GET', path, true);
                 xhr.onload = function () {
                     if (xhr.readyState == 4 && xhr.status == 200) {
                         try {
-                            JSONLoader.getInstance().json[data] = JSON.parse(xhr.responseText);
-                            resolve(JSONLoader.getInstance().json[data]);
+                            JSONLoader.getInstance().json[path] = JSON.parse(xhr.responseText);
+                            resolve(JSONLoader.getInstance().json[path]);
                         } catch (e) {
-                            console.error(`Failed to parse JSON data! Please verify "${data}".`);
+                            console.error(`Failed to parse JSON path! Please verify "${path}".`);
                             resolve({});
                         }
                     }
                     else {
-                        console.error(`data not found! ("${data}")`);
+                        console.error(`path not found! ("${path}")`);
                         resolve({});
                     }
                 };
                 xhr.onerror = () => {
-                    console.error(`Failed to load "${data}"`);
+                    console.error(`Failed to load "${path}"`);
                     resolve({});
                 }
                 xhr.onabort = xhr.onerror;
