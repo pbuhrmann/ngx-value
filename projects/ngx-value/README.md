@@ -5,7 +5,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/penrique/ngx-value?color=3B3)
 ![GitHub](https://img.shields.io/github/license/penrique/ngx-value?color=%2339F)
 
-`ngx-value` is an Angular library that provides an easy way to load JSON data from various HTTP sources and read their properties during runtime.
+`ngx-value` is an Angular library that provides an easy way to load JSON data from various HTTP sources and read its properties during runtime.
 
 ## Goal
 
