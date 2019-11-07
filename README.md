@@ -23,26 +23,33 @@ npm install ngx-value
 
 ### Decorators
 ```ts
-@Value(name: string, data?: string): any
+@Value(name: string, path?: string): any
+```
+
+```ts
+@Path(path: string): any
 ```
 
 ### Methods
 ```ts
-Values(...data: string[]): Promise<any>
+Values(...path: string[]): Promise<any>
 ```
 
 ```ts
-Get(property: string, data?: string): any
+Get(property: string, path?: string): any
 ```
 
 ## Usage
 
-First off, it is necessary to load any data before our angular application starts and as such we need to include some initialization logic into our app. As seen below, we make use of the APP_INITIALIZER provided by Angular which will allow us to run some code before the app actually starts running.
+First off, it is necessary to load any data before our angular application starts and as such we need to include some initialization logic into our app. As seen below, we make use of the `APP_INITIALIZER` provided by Angular which will allow us to run some code before the app actually starts running.
 
 Afterwards just use `@Value` or `Get()` to retrieve any property.
 
-Also keep in mind that you are allowed to call `Values(...)` at any time to continue loading JSON data into memory, wait for it to finish loading before attempting to use new properties though (it's a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)).
+By default, `@Value` will retrieve a property based on its path parameter. Otherwise, it will go for the class path set with `@Path`. If no path was set that way, it will use the first path passed in `@Values(...)`, and as last resort it will use `assets/properties.json` as the default path.
 
+Keep in mind that you are allowed to call `Values(...)` at any time during runtime to continue loading JSON data into memory, wait for it to finish loading before attempting to use its properties though (it's a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)).
+
+## Example 
 ```ts
 /**
  *  `app.module.ts`
@@ -81,6 +88,7 @@ import { Value, Get } from 'ngx-value';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+@Path('assets/properties.json') // Default path for this class
 export class AppComponent implements OnInit {
 
   @Value('title') // default location is "assets/properties.json"
