@@ -4,11 +4,11 @@ node_js:
   - '12'
 
 addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
+  chrome: stable
+
+branches:
+  only:
+    - master
 
 cache:
   directories:
@@ -18,4 +18,4 @@ install:
   - npm ci
 
 script:
-  - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
+  - npm run test --watch false --no-progress --browsers ChromeHeadless
