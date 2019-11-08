@@ -22,7 +22,9 @@
     "properties",
     "ngx",
     "ng",
-    "decorator"
+    "decorator",
+    "properties-loader",
+    "typescript"
   ],
   "repository": {
     "type": "git",
