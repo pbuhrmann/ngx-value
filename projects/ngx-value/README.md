@@ -35,7 +35,7 @@ npm install ngx-value
 
 ### Methods
 ```ts
-Values(...path: string[]): Promise<any>
+Values(...paths: string[]): Promise<any>
 ```
 
 ```ts

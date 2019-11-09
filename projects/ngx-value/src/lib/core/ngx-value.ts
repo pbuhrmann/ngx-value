@@ -29,13 +29,13 @@ class NgxValue {
         };
     }
 
-    static Values(...path: string[]) {
+    static Values(...paths: string[]) {
         return new Promise((resolve, reject) => {
             let promises = [];
-            if (path != null && path.length > 0) {
-                NgxValue.defaultPath = NgxValue.defaultPath != null ? NgxValue.defaultPath : path[0];
+            if (paths != null && paths.length > 0) {
+                NgxValue.defaultPath = NgxValue.defaultPath != null ? NgxValue.defaultPath : paths[0];
 
-                path.forEach(result => {
+                paths.forEach(result => {
                     promises.push(JSONLoader.getInstance().loadJSON(result));
                 });
             }
