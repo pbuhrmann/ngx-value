@@ -8,6 +8,8 @@
 
 `ngx-value` is an Angular library that provides an easy way to load JSON data from various HTTP sources and read its properties during runtime.
 
+A working demo can be found [here](https://ngx-value.penrique.now.sh/)
+
 ## Goal
 
 There's always values we need to tweak and adjust depending on the environment, even though the project being deployed is still the same one. Or maybe we're just testing things out in an environment of our own and we'd like to make use of different configuration files and keep organized.
