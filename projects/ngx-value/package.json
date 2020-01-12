@@ -1,6 +1,6 @@
 {
   "name": "ngx-value",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "💫 Load and access JSON data with this easy-to-use @Value decorator for Angular 💫",
   "homepage": "https://github.com/penrique/ngx-value#readme",
   "peerDependencies": {
